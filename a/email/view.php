@@ -27,14 +27,8 @@ include('../../resources/headers/header.php');
           $subject = $row['subject'];
           $body = $row['body'];
           $name = strtok($from, '|');
-          echo "<h1>$name</h1>";
           $email = explode("|", $from)[1];
-          echo "<small>$email</small>";
-          echo "<br>";
-          echo "<br>";
-          echo "<br>";
-          echo "<h4>$subject</h4>";
-          echo "<p>$body</p>";
+          echo "<h1>$subject</h1>";
           echo "
       <form target='_blank' action='../../a/email/send.php' method='GET' style='float: right; margin-right: 10px;'>
       <input type='hidden' name='e' value='$email'>
@@ -45,7 +39,7 @@ include('../../resources/headers/header.php');
       </svg>
       </button>
       </form>
-      </div><br><br>;
+      </div><br><br>
       <form style='float: right; margin-right: 10px;'>
       <button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#share'>
       <svg xmlns='http://www.w3.org/2000/svg' width='26' height='26' fill='currentColor' class='bi bi-trash3' viewBox='0 0 16 16'>
@@ -53,6 +47,15 @@ include('../../resources/headers/header.php');
       </svg>
       </button>
       </form>";
+          echo "<div class='email-contents'>";
+          echo "<br>";
+          echo "<b>$name</b>";
+          echo "<p>$email</p>";
+          echo "<br>";
+          echo "<br>";
+          echo "<br>";
+          echo "$body";
+          echo "</div>";
         }
       } else {
         echo "Failed to load message, error NO. 369";
