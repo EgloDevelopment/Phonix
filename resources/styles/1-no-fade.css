@@ -3,9 +3,6 @@ html {
 }
 
 body {
-  animation: fadeInAnimation ease 1s;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
   overflow-x: hidden;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -13,15 +10,6 @@ body {
 
 body::-webkit-scrollbar {
   display: none;
-}
-
-@keyframes fadeInAnimation {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
 }
 
 .img1 {

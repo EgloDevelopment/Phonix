@@ -1,7 +1,7 @@
 <?php
+error_reporting(0);
 session_start();
 include('../resources/headers/header-no-secure.php');
-error_reporting(0);
 
 if ($_SESSION['logged-in'] == 'true') {
     echo '<script>window.location.href = "../../";</script>';
@@ -13,14 +13,14 @@ if ($_SESSION['logged-in'] == 'true') {
 
 <body>
     <div class="position-absolute top-50 start-50 translate-middle">
-        <div class="card" style="width: 18rem;">
+        <div class="card">
             <div class="card-body">
                 <h1 class="center">Login</h1>
                 <br>
                 <form action="" method="POST">
-                    <input type="username" class="form-control" name="email" placeholder="Email">
+                    <input type="username" class="form-control" name="email" placeholder="Email" required>
                     <br>
-                    <input type="password" class="form-control" name="password" placeholder="Password">
+                    <input type="password" class="form-control" name="password" placeholder="Password" required>
                     <br>
                     <div class="center">
                         <button type="submit" class="btn btn-outline-primary">Login</button>
@@ -37,7 +37,7 @@ if ($_SESSION['logged-in'] == 'true') {
 
 
 
-    <?php
+<?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     require_once('../resources/DB/config.php');
 
@@ -80,8 +80,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $_SESSION['logged-in'] = 'true';
                     $_SESSION['id'] = $row["id"];
                     $_SESSION['email'] = $row["email"];
+                    $_SESSION['phonix-email'] = $row['phonixemail'];
                     $_SESSION['name'] = $row["name"];
-                    $_SESSION['owner-id'] = $row["ownerid"];
                     $_SESSION['2fa'] = $row['2fa'];
                     $_SESSION['last-login'] = $row["lastlogin"];
                     $_SESSION['account-created'] = $row["created"];
@@ -96,8 +96,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $_SESSION['smtp-port'] = $row["smtpport"];
                         $_SESSION['smtp-username'] = $row["smtpusername"];
                         $_SESSION['smtp-password'] = $row['smtppassword'];
-                    }    
-
+                    }
+                    echo '<script>window.location.href = "../";</script>';
                 } else {
                     echo 'SMTP settings are not set.';
                 }
@@ -113,5 +113,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 
-    ?>
-
+?>
