@@ -32,6 +32,10 @@ imapusername: the username to access your IMAP server.
 imappassword: the password to access your IMAP server.
 ```
 
+5. After completing the above step run the Phonix server.
+
+6. To get emails you must setup a script to run the ```/tasks/get-emails.php``` and the ```/tasks/get-spam.php``` every few minutes, we personally use UptimeRobot to ping both of those links every minute, the link should be as follows: ```https://your-server.com/tasks/get-emails.php``` and ```https://your-server.com/tasks/get-spam.php```
+
 # What we recommend
 
 ```
