@@ -1,3 +1,5 @@
+[![CodeFactor](https://www.codefactor.io/repository/github/eglodevelopment/phonix/badge)](https://www.codefactor.io/repository/github/eglodevelopment/phonix)
+
 # Phonix
 
 The Eglo Phonix chat app, built for everyone.
@@ -32,6 +34,10 @@ imapusername: the username to access your IMAP server.
 imappassword: the password to access your IMAP server.
 ```
 
+5. After completing the above step run the Phonix server.
+
+6. To get emails you must setup a script to run the ```/tasks/get-emails.php``` and the ```/tasks/get-spam.php``` every few minutes, we personally use UptimeRobot to ping both of those links every minute, the link should be as follows: ```https://your-server.com/tasks/get-emails.php``` and ```https://your-server.com/tasks/get-spam.php```
+
 # What we recommend
 
 ```
@@ -45,10 +51,13 @@ For email handling and routing we use Cloudflare.
 # How it works
 
 Phonix receiving emails:
+
 ![Phonix email receive](https://user-images.githubusercontent.com/105808341/179865328-c1a7ff9a-ca98-48f6-b993-d3ee14f8724a.png)
 
 Phonix sending emails:
+
 ![Phonix email send](https://user-images.githubusercontent.com/105808341/179865414-86350d37-20a4-4330-ae6b-21a2850f145b.png)
 
 Phonix sending messages:
+
 ![Phonix phone send](https://user-images.githubusercontent.com/105808341/179865443-7f87fe6e-b4fc-45ea-bb7d-829d30a5b662.png)
