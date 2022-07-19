@@ -1,3 +1,5 @@
+[![CodeFactor](https://www.codefactor.io/repository/github/eglodevelopment/phonix/badge)](https://www.codefactor.io/repository/github/eglodevelopment/phonix)
+
 # Phonix
 
 The Eglo Phonix chat app, built for everyone.
