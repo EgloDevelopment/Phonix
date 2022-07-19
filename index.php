@@ -15,6 +15,9 @@ include('resources/headers/header.php');
             <a href="a/phone" class="btn btn-primary">Phone</a>
             <br>
             <br>
+            <a href="a/settings" class="btn btn-outline-primary">Settings</a>
+            <br>
+            <br>
             <a href="a/logout" class="btn btn-outline-danger">Logout</a>
         </div>
     </div>

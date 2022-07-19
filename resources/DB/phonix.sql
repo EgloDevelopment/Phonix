@@ -3,11 +3,10 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 19, 2022 at 12:47 AM
+-- Generation Time: Jul 20, 2022 at 12:50 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
-SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -35,6 +34,20 @@ CREATE TABLE `emails` (
   `date` text NOT NULL,
   `body` text NOT NULL,
   `owner` text NOT NULL,
+  `uid` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `phone`
+--
+
+CREATE TABLE `phone` (
+  `id` int(11) NOT NULL,
+  `tonumber` text NOT NULL,
+  `fromaddress` text NOT NULL,
+  `time` date NOT NULL DEFAULT current_timestamp(),
   `uid` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -98,7 +111,6 @@ CREATE TABLE `users` (
   `phonixemail` text NOT NULL,
   `name` text NOT NULL,
   `password` text NOT NULL,
-  `2fa` int(11) NOT NULL DEFAULT 1,
   `lastlogin` text NOT NULL,
   `created` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -111,6 +123,12 @@ CREATE TABLE `users` (
 -- Indexes for table `emails`
 --
 ALTER TABLE `emails`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `phone`
+--
+ALTER TABLE `phone`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -148,6 +166,12 @@ ALTER TABLE `emails`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `phone`
+--
+ALTER TABLE `phone`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `sent`
 --
 ALTER TABLE `sent`
@@ -170,7 +194,6 @@ ALTER TABLE `spam`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

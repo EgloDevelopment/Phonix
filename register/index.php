@@ -13,21 +13,19 @@ if ($_SESSION['logged-in'] == 'true') {
 
 <body>
     <div class="position-absolute top-50 start-50 translate-middle">
-        <div class="card" style="width: 18rem; height: 33.5rem;">
+        <div class="card" style="width: 18rem; height: 31.5rem;">
             <div class="card-body">
                 <h1 class="center">Register</h1>
                 <br>
                 <form action="" method="POST">
-                    <input type="username" class="form-control" name="email" placeholder="Email" required>
-                    <br>
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" name="phonixemail" placeholder="Email you want" required>
                         <span class="input-group-text" id="basic-addon2">@phonix.pw</span>
                     </div>
-                    <br>
-                    <br>
-                    <br>
+                    <p class="center">^ You will use that email to login ^</p>
                     <input type="username" class="form-control" name="name" placeholder="Name" required>
+                    <br>
+                    <input type="username" class="form-control" name="email" placeholder="Email (Optional)">
                     <br>
                     <input type="password" class="form-control" name="password1" placeholder="Password" required>
                     <br>
@@ -96,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($result->num_rows > 0) {
             echo 'Email already used.';
         } else {
-            $sql = "INSERT INTO `users`(`email`, `phonixemail`,`name`, `password`, `2fa`, `lastlogin`) VALUES ('$escemail', '$escphonixemail','$escname','$hashedpassword','1', 'first-login')";
+            $sql = "INSERT INTO `users`(`email`, `phonixemail`,`name`, `password`, `lastlogin`) VALUES ('$escemail', '$escphonixemail','$escname', '$hashedpassword', 'first-login')";
 
             if ($conn->query($sql) === TRUE) {
                 echo '<script>window.location.href = "../login";</script>';

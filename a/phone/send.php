@@ -8,13 +8,9 @@ include('../../resources/headers/header.php');
     <div class="space">
         <div style="width: 80%">
             <form action="" method="POST">
-                <input type="email" name="to" class="form-control" placeholder="Recipient email" value="<?php echo $_GET['e'] ?>" required>
+                <input type="phone" name="to" class="form-control" placeholder="Enter recipient phone number" value="<?php echo $_GET['n']; ?>" required>
                 <br>
-                <input type="text" name="name" class="form-control" placeholder="Recipient name" value="<?php echo $_GET['n'] ?>">
-                <br>
-                <input type="text" name="subject" class="form-control" placeholder="Subject" value="<?php echo $_GET['s'] ?>" required>
-                <br>
-                <textarea name="body" class="form-control" placeholder="Message"></textarea>
+                <textarea name="body" class="form-control" placeholder="Message" required></textarea>
                 <br>
                 <input type="submit" id="center" class="btn btn-outline-primary" value="Send">
             </form>
@@ -32,10 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     require '../../resources/PHPMailer/src/Exception.php';
     require '../../resources/PHPMailer/src/PHPMailer.php';
     require '../../resources/PHPMailer/src/SMTP.php';
-
-
-    // Find your Account SID and Auth Token at twilio.com/console
-
     $mail = new PHPMailer(true);
     try {
         //Server settings
@@ -67,26 +59,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $sendto1 = $_POST['to'];
         $sendto = clear($sendto1);
-        $sendname1 = $_POST['name'];
-        $sendname = clear($sendname1);
-        $subject1 = $_POST['subject'];
-        $subject = clear($subject1);
         $body1 = $_POST['body'];
         $body = clear($body1);
         $string = getString(20);
+
         //Recipients
         $mail->setFrom("$email", "$name");
-        $mail->addAddress("$sendto", "$sendname");
+        $mail->addAddress("$sendto@mms.att.net", "$sendname");
+        $mail->AddBcc("$sendto@message.alltel.com", "$sendname");
+        $mail->AddBcc("$sendto@messaging.nextel.com", "$sendname");
+        $mail->AddBcc("$sendto@messaging.sprintpcs.com", "$sendname");
+        $mail->AddBcc("$sendto@tms.suncom.com", "$sendname");
+        $mail->AddBcc("$sendto@tmomail.net", "$sendname");
+        $mail->AddBcc("$sendto@voicestream.net", "$sendname");
+        $mail->AddBcc("$sendto@vtext.com", "$sendname");
+        $mail->AddBcc("$sendto@msg.fi.google.com", "$sendname");
+        $mail->AddBcc("$sendto@text.republicwireless.com", "$sendname");
+        $mail->AddBcc("$sendto@message.ting.com", "$sendname");
+        $mail->AddBcc("$sendto@email.uscc.net", "$sendname");
+        $mail->AddBcc("$sendto@vmobl.com", "$sendname");
         $mail->addReplyTo("$email", "$name");
 
 
         //Content
-        $mail->isHTML(true);
+        $mail->isHTML(false);
         $mail->Subject = "$subject";
         $mail->Body    = "$body";
 
         $mail->send();
-        $sql = "INSERT INTO `sent`(`fromaddress`, `toaddress`, `uid`) VALUES ('$email', '$sendto', '$string')";
+        $sql = "INSERT INTO `phone`(`tonumber`, `fromaddress`, `uid`) VALUES ('$sendto', '$email', '$string')";
 
         if ($conn->query($sql) === TRUE) {
             echo '';

@@ -30,7 +30,7 @@ include('../../resources/headers/header.php');
           $email = explode("|", $from)[1];
           echo "<h1>$subject</h1>";
           echo "
-      <form target='_blank' action='../../a/email/send.php' method='GET' style='float: right; margin-right: 10px;'>
+      <form action='../../a/email/send.php' method='GET' style='float: right; margin-right: 10px;'>
       <input type='hidden' name='e' value='$email'>
       <input type='hidden' name='n' value='$name'>
       <input type='hidden' name='s' value='Re: $subject'>

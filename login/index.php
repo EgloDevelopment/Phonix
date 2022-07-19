@@ -18,7 +18,7 @@ if ($_SESSION['logged-in'] == 'true') {
                 <h1 class="center">Login</h1>
                 <br>
                 <form action="" method="POST">
-                    <input type="username" class="form-control" name="email" placeholder="Email" required>
+                    <input type="email" class="form-control" name="email" placeholder="Phonix email" required>
                     <br>
                     <input type="password" class="form-control" name="password" placeholder="Password" required>
                     <br>
@@ -56,13 +56,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
 
-    $sql = "SELECT id, email, password FROM users WHERE email = '$escemail'";
+    $sql = "SELECT id, phonixemail, password FROM users WHERE phonixemail = '$escemail'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             $id = $row["id"];
-            $dbemail = $row["email"];
+            $dbemail = $row["phonixemail"];
             $dbpassword = $row["password"];
         }
     } else {
@@ -82,10 +82,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $_SESSION['email'] = $row["email"];
                     $_SESSION['phonix-email'] = $row['phonixemail'];
                     $_SESSION['name'] = $row["name"];
-                    $_SESSION['2fa'] = $row['2fa'];
                     $_SESSION['last-login'] = $row["lastlogin"];
                     $_SESSION['account-created'] = $row["created"];
                 }
+
+
+                date_default_timezone_set("America/Denver");
+                $time = date("m/d/y | h:i:sa");
+                $sql = "UPDATE `users` SET `lastlogin`='$time' WHERE id = '$id'";
+                $conn->query($sql);
+
 
                 $sql = "SELECT * FROM settings";
                 $result = $conn->query($sql);
@@ -97,6 +103,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $_SESSION['smtp-username'] = $row["smtpusername"];
                         $_SESSION['smtp-password'] = $row['smtppassword'];
                     }
+                    sleep(1);
+                    $conn->close();
                     echo '<script>window.location.href = "../";</script>';
                 } else {
                     echo 'SMTP settings are not set.';

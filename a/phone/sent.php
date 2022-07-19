@@ -19,13 +19,13 @@ include('../../resources/headers/header.php');
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $sql = "SELECT * FROM sent WHERE fromaddress = '$owner' ORDER BY id DESC";
+        $sql = "SELECT * FROM phone WHERE fromaddress = '$owner' ORDER BY id DESC";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             // output data of each row
             while ($row = $result->fetch_assoc()) {
                 $from = $row['fromaddress'];
-                $to = $row['toaddress'];
+                $to = $row['tonumber'];
                 $time = $row['time'];
                 $uid = $row['uid'];
                 echo "<b>From:</b> $from";

@@ -27,6 +27,7 @@ include('../../resources/headers/header-no-fade.php');
             </form>
           </li>
         </ul>
+        <a href="../../" class="btn btn-outline-danger" style="margin-right: 20px;">Home</a>
         <form class="d-flex" role="search" action="" method="POST">
           <input type="hidden" name="action" value="send">
           <button class="btn btn-outline-success" type="submit">Send</button>
@@ -47,7 +48,7 @@ include('../../resources/headers/header-no-fade.php');
     die("Connection failed: " . $conn->connect_error);
   }
 
-  $sql = "SELECT * FROM emails WHERE owner ='$owner'";
+  $sql = "SELECT * FROM emails WHERE owner ='$owner' ORDER BY id DESC";
   $result = $conn->query($sql);
   if ($result->num_rows > 0) {
     // output data of each row
