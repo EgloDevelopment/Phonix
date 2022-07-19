@@ -7,4 +7,3 @@ if ($_GET['a'] == 'js') {
 } else {
     echo 'You look lost, <a href="../">go home?</a>';
 }
-?>
